@@ -1,8 +1,8 @@
-# DAY-5-QA-AUDIT
+# DAY-5-QA-AUDIT - Google Maps, Socket.IO Realtime, E2E, Security, Full
 
-**Date:** 18 September 2026  
-**Tester:** Manshi  
-**Project:** Infurnus Backend  
+**Date:** 18 September 2026
+**Tester:** Manshi
+**Project:** Infurnus Backend
 **Branch:** `manshi`
 
 ## 1. Executive Summary
@@ -15,33 +15,35 @@ The tested automated suites completed without failures. Some integration suites 
 
 ## 2. Test Execution Summary
 
-| Area | Result |
-|---|---|
-| Full automated regression | PASS — 77 files passed, 4 skipped; 808 passed, 16 skipped, 0 failed |
-| Security focused tests | PASS — 6 files, 36 tests passed |
-| Socket.IO focused tests | PASS — 5 files, 28 tests passed |
-| Google Maps + route tests | PASS — 2 files, 12 tests passed |
-| Socket.IO reconnect integration | PASS — 1 file, 1 test passed |
-| Socket.IO authentication | PASS — 1 file, 8 tests passed |
-| Driver location API | PASS |
-| PostGIS driver location persistence | PASS |
-| Unauthorized customer status transition | PASS |
-| Customer cancellation E2E | PASS |
-| Cancellation DB persistence | PASS |
-| Driver ride acceptance E2E | BLOCKED — driver verification pending |
-| Live Google Maps provider calls | NOT TESTED |
-| Dedicated live driver-location Socket event E2E | NOT TESTED |
+| Area                                            | Result                                                               |
+| ----------------------------------------------- | -------------------------------------------------------------------- |
+| Full automated regression                       | PASS — 77 files passed, 4 skipped; 808 passed, 16 skipped, 0 failed |
+| Security focused tests                          | PASS — 6 files, 36 tests passed                                     |
+| Socket.IO focused tests                         | PASS — 5 files, 28 tests passed                                     |
+| Google Maps + route tests                       | PASS — 2 files, 12 tests passed                                     |
+| Socket.IO reconnect integration                 | PASS — 1 file, 1 test passed                                        |
+| Socket.IO authentication                        | PASS — 1 file, 8 tests passed                                       |
+| Driver location API                             | PASS                                                                 |
+| PostGIS driver location persistence             | PASS                                                                 |
+| Unauthorized customer status transition         | PASS                                                                 |
+| Customer cancellation E2E                       | PASS                                                                 |
+| Cancellation DB persistence                     | PASS                                                                 |
+| Driver ride acceptance E2E                      | BLOCKED — driver verification pending                               |
+| Live Google Maps provider calls                 | NOT TESTED                                                           |
+| Dedicated live driver-location Socket event E2E | NOT TESTED                                                           |
 
 ## 3. Full Regression
 
 Command executed: `npm test`
 
 Result:
+
 - Test Files: 77 passed, 4 skipped (81)
 - Tests: 808 passed, 16 skipped (824)
 - Failed: 0
 
 Skipped suites:
+
 - `src/modules/coupons/tests/coupon.concurrency.integration.test.ts`
 - `src/modules/coupons/tests/coupon.database.integration.test.ts`
 - `src/modules/rides/tests/ride.database.integration.test.ts`
@@ -58,6 +60,7 @@ Repository security checks found no tracked `.env`, `.pem`, `.key`, or `.crt` fi
 ## 5. Socket.IO Audit
 
 Automated tests verified:
+
 - valid authentication
 - missing/empty/whitespace/invalid/expired token rejection
 - reconnect re-authentication
@@ -81,6 +84,7 @@ Command:
 Result: **12/12 passed**.
 
 Covered:
+
 - no previous route -> recalculation
 - small recent movement -> no recalculation
 - time threshold -> recalculation
@@ -95,6 +99,7 @@ Covered:
 `{"success":true,"message":"Driver location updated"}`
 
 Database verification confirmed:
+
 - availability = `available`
 - location = `POINT(77.5946 12.9716)`
 - location timestamp persisted
@@ -117,6 +122,7 @@ Database verification confirmed the ride remained `searching`, with no driver or
 Customer successfully cancelled a `searching` ride.
 
 Verified:
+
 - status = `cancelled`
 - cancellation reason persisted
 - `cancelledAt` persisted
@@ -131,6 +137,7 @@ Database verification confirmed the same values.
 ## 10. Driver Acceptance E2E — BLOCKED
 
 The test driver had:
+
 - user status = `active`
 - verification status = `pending`
 - availability = `available`
@@ -152,6 +159,7 @@ The response may be misleading because the ride itself remained `searching`; the
 ## 11. Database Audit
 
 Completed targeted checks included:
+
 - migration count: 29
 - migrations through 028 applied
 - required ride/vehicle/breadcrumb/rating/PostGIS objects present
