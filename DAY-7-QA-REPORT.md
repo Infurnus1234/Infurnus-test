@@ -1,15 +1,19 @@
 # DAY 7 — Backend Email, OTP & Authentication Flow Testing
 
 ## Date
+
 22 September 2026
 
 ## Tester
+
 Manshi
 
 ## Scope
+
 Backend-only QA testing. No frontend UI or frontend integration testing was performed.
 
 ## Environment
+
 - Backend/API: Infurnus Backend
 - API Base URL: `http://localhost:3000`
 - API Testing Tool: cURL
@@ -26,6 +30,7 @@ Backend-only QA testing. No frontend UI or frontend integration testing was perf
 - Edge/security scenarios: **Covered**
 
 ### Modules Covered
+
 - Signup & Registration
 - Email/OTP Verification
 - Login & OTP Authentication
@@ -43,6 +48,7 @@ Backend-only QA testing. No frontend UI or frontend integration testing was perf
 Minimum required: **5 real authorized email addresses**
 
 ### Emails Tested
+
 1. `manshiarya0810@gmail.com`
 2. `manshicbse2004@gmail.com`
 3. `nishiraj8695@gmail.com`
@@ -50,6 +56,7 @@ Minimum required: **5 real authorized email addresses**
 5. `manshi.2023becse087@student.nimsuniversity.org`
 
 ### Verification Performed
+
 - Backend email/OTP API triggered
 - Backend response verified
 - Actual inbox checked
@@ -61,6 +68,7 @@ Minimum required: **5 real authorized email addresses**
 ## 3. Signup & Registration Testing
 
 Tested/verified:
+
 - Valid signup
 - Invalid email
 - Missing required fields
@@ -82,6 +90,7 @@ Tested/verified:
 ## 4. Login Testing
 
 Tested/verified:
+
 - Valid credentials
 - Incorrect password
 - Non-existing/invalid account scenarios
@@ -102,6 +111,7 @@ Tested/verified:
 ## 5. OTP Testing
 
 Tested/verified:
+
 - OTP generation
 - OTP email triggering
 - Actual OTP delivery
@@ -121,6 +131,7 @@ Tested/verified:
 - OTP provider/session failure handling
 
 Observed controlled provider/error responses:
+
 - `OTP_PROVIDER_SESSION_INVALID`
 - `OTP_PROVIDER_RESEND_FAILED`
 - `OTP_RESEND_TOO_SOON`
@@ -136,6 +147,7 @@ Implemented and tested:
 `POST /auth/forgot-password`
 
 Verified:
+
 - Registered email
 - Reset challenge generation
 - Reset OTP/email triggering
@@ -153,6 +165,7 @@ Implemented and tested:
 `POST /auth/reset-password`
 
 Verified:
+
 - Reset challenge
 - Valid OTP
 - Invalid OTP
@@ -172,6 +185,7 @@ Implemented and tested:
 `POST /auth/change-password`
 
 Verified:
+
 - Valid current password
 - Incorrect current password
 - Invalid/weak new password validation
@@ -180,10 +194,12 @@ Verified:
 - Old password behavior
 
 Observed:
+
 - Incorrect current password → `400 CURRENT_PASSWORD_INVALID`
 - Successful password change → `200`
 
 ### Remaining dedicated edge case
+
 - Same old/new password needs one final test using a password that passes the password-strength schema.
 
 **Status: PASS for implemented flow; one edge case pending final execution**
@@ -195,6 +211,7 @@ Implemented and tested:
 `DELETE /auth/account`
 
 Security requirements verified:
+
 - Authentication required
 - Invalid/expired token rejected
 - CSRF protection required
@@ -205,6 +222,7 @@ Successful deletion response:
 `204 No Content`
 
 Also verified:
+
 - Refresh token cookie cleared
 - CSRF cookie cleared
 - Account could no longer authenticate after deletion
@@ -219,6 +237,7 @@ Post-deletion login attempt returned:
 ## 10. Negative & Failure Testing
 
 Tested:
+
 - Invalid request payload
 - Missing fields
 - Invalid OTP
@@ -254,6 +273,7 @@ This should be fixed so malformed client input is handled as a controlled reques
 ## 11. Backend/API Security Verification
 
 Verified:
+
 - Authentication middleware
 - Access-token validation
 - Refresh-token flow
@@ -273,6 +293,7 @@ The following lifecycle was validated:
 **Signup → Email/OTP → Verification → Login → OTP/Authentication → Forgot Password → Password Reset → Change Password → Account Deletion**
 
 Final account deletion verification:
+
 - Account deletion → `204 No Content`
 - Refresh/CSRF cookies cleared
 - Login after deletion → `401 INVALID_CREDENTIALS`
@@ -289,6 +310,7 @@ Final account deletion verification:
 ## 14. Day 7 Overall Status
 
 ### Completed
+
 - [x] Minimum 40–50 backend test cases
 - [x] 50+ preferred coverage
 - [x] Minimum 5 real email addresses
@@ -307,6 +329,7 @@ Final account deletion verification:
 - [x] Bug documentation
 
 ### Pending
+
 - [ ] Same old/new password dedicated test
 - [ ] OTP behavior after account deletion
 - [ ] Re-registration after account deletion
